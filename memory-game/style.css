@@ -1,0 +1,41 @@
+body, html {
+  background-color: #2c2c2c;
+  color: white;
+  font-family: sans-serif;
+}
+h1 {
+  text-align: center;
+  color: #733993;
+}
+
+h3 {
+  text-align: center;
+}
+
+.container {
+  margin: 3rem 6rem
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+img {
+  height: 230px;
+  width: 230px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+img:hover {
+  transform: scale(1.02);
+  filter: drop-shadow(0 0px 4px rgba(255, 255, 255, 0.445));
+}
+
+#grid {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(4, 230px);
+  grid-gap: 1rem;
+}
