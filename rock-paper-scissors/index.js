@@ -2,8 +2,7 @@ const computerChoice = document.getElementById('computer-choice')
 const userChoice     = document.getElementById('user-choice')
 const choices        = document.querySelectorAll('button')
 const result         = document.getElementById('result')
-
-
+const choicesArray   = ['ROCK', 'PAPER', 'SCISSORS']
 
 getResults = () => {
   if (computerChoice.innerText === userChoice.innerText) {
@@ -20,19 +19,12 @@ getResults = () => {
 };
 
 getTheComputerChoice = () => {
-  const randNumber = Math.floor(Math.random() * 3)
-  if (randNumber === 0) {
-    computerChoice.innerText = 'Rock'
-  } else if (randNumber === 1) {
-    computerChoice.innerText = 'Paper'
-  } else if (randNumber === 2) {
-    computerChoice.innerText = 'Scissors'
-  }
+  const randChoice = choicesArray[Math.floor(Math.random() * 3)]
+  computerChoice.innerText = randChoice
   getResults()
 }
 
 choices.forEach(choice => choice.addEventListener('click', (e) => {
-  console.log(e.target.innerText);
   userChoice.innerText = e.target.innerText
   getTheComputerChoice()
 }))
