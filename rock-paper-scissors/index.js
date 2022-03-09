@@ -8,23 +8,13 @@ const result         = document.getElementById('result')
 getResults = () => {
   if (computerChoice.innerText === userChoice.innerText) {
     result.innerText = 'DRAW'
-  }
-  if (computerChoice.innerText === 'SCISSORS' && userChoice.innerText === 'ROCK') {
+  } else if (
+    (computerChoice.innerText === 'SCISSORS' && userChoice.innerText === 'ROCK') ||
+    (computerChoice.innerText === 'ROCK' && userChoice.innerText === 'PAPER') ||
+    (computerChoice.innerText === 'PAPER' && userChoice.innerText === 'SCISSORS') 
+    ) {
     result.innerText = 'You win!'
-  }
-  if (computerChoice.innerText === 'ROCK' && userChoice.innerText === 'PAPER') {
-    result.innerText = 'You win!'
-  }
-  if (computerChoice.innerText === 'PAPER' && userChoice.innerText === 'SCISSORS') {
-    result.innerText = 'You win!'
-  }
-  if (computerChoice.innerText === 'SCISSORS' && userChoice.innerText === 'PAPER') {
-    result.innerText = 'You lose!'
-  }
-  if (computerChoice.innerText === 'ROCK' && userChoice.innerText === 'SCISSORS') {
-    result.innerText = 'You lose!'
-  }
-  if (computerChoice.innerText === 'PAPER' && userChoice.innerText === 'ROCK') {
+  } else {
     result.innerText = 'You lose!'
   }
 }
