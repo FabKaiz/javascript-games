@@ -4,52 +4,44 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
   <title>Rock Paper Scissors</title>
 </head>
 <body>
-  <style>
-    body, html {
-      background-color: #2c2c2c;
-      color: white;
-      font-family: sans-serif;
-    }
-
-    .container {
-      margin: 2rem 4rem
-    }
-
-    .flex-container {
-      display: flex;
-      align-items: center;
-    }
-
-    h2 {
-      margin-right: 1rem;
-    }
-
-    span {
-      color: aquamarine;
-      text-transform: uppercase;
-    }
-  </style>
+  <button class="back-button">
+    <a href="../index.html">Back to main menu</a>
+  </button>
 
   <div class="container">
 
-    <div class="flex-container">
-      <h2>Computer choice:</h2><span id="computer-choice"></span>
+    <div class="choice__container">
+      <div class="card">
+        <h2>Computer choice:</h2><span id="computer-choice"></span>
+      </div>
+      <div class="card">
+        <h2>Your choice:</h2><span id="user-choice"></span>
+      </div>
     </div>
-    <div class="flex-container">
-      <h2>User choice:</h2><span id="user-choice"></span>
-    </div>
-
-    <button id="rock">Rock</button>
-    <button id="paper">Paper</button>
-    <button id="scissors">Scissors</button>
-
-    <div class="flex-container">
+    
+    
+    <div class="center">
       <h2>Result:</h2><span id="result"></span>
     </div>
-
+    
+    <div class="flex-container center button__group">
+      <button class="button__choice" id="rock">
+        <img src="./images/rock.png" alt="rock hand">
+        Rock
+      </button>
+      <button class="button__choice" id="paper">
+        <img src="./images/paper.png" alt="paper hand">
+        Paper
+      </button>
+      <button class="button__choice" id="scissors">
+        <img src="./images/scissors.png" alt="scissors hand">
+        Scissors
+      </button>
+    </div>
 
   </div>
 

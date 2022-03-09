@@ -94,6 +94,11 @@ img:hover {
   grid-gap: 1rem;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 @media screen and (min-width: 1950px) {
   h3 {
     margin-bottom: 5rem;

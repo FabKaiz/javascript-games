@@ -73,8 +73,6 @@ const cardsClicked   = []
 const cardsClickedId = []
 const cardsWon       = []
 
-console.log(cardArray);
-
 const checkMatch = () => {
   const allCards = document.querySelectorAll("img")
   

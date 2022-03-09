@@ -25,6 +25,6 @@ getTheComputerChoice = () => {
 }
 
 choices.forEach(choice => choice.addEventListener('click', (e) => {
-  userChoice.innerText = e.target.innerText
+  userChoice.innerText = e.target.closest('button').innerText
   getTheComputerChoice()
 }))
