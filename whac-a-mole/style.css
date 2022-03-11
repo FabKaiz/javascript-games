@@ -83,3 +83,24 @@ a {
 		background-position: 100% 0;
 	}
 }
+
+#score {
+  margin-right: 2rem;
+}
+
+.grid {
+  max-height: 606px;
+  max-width: 606px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.square {
+  height: 200px;
+  width: 200px;
+  border: 1px solid #ffe5e5;
+}
+
+.mole {
+  background-color: #ffacac;
+}
