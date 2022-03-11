@@ -106,26 +106,46 @@ a {
   border: 1px solid #ffe5e5;
   position: relative;
   overflow: hidden;
-
+  background-color: #ffacac4d;
 }
 
 .mole {
   cursor: pointer;
-  background: url(./images/mole.png);
   height: 200px;
   width: 200px;
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: #ffacac;
   position: relative;
   overflow: hidden;
 }
 
 img {
-  top: 200px;
-  position: absolute;
+  height: 200px;
+  width: 200px;
+  margin-top: 200px;
+  transition: all 0.5s;
 }
 
 .button-start {
   margin-top: 2rem;
+}
+
+@media screen and (max-width: 751px) {
+  .grid {
+    max-height: 90vw;
+    max-width: 59vw;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  img {
+    height: 19vw;
+    width: 19vw;
+    margin-top: 19vw;
+  }
+
+  .square {
+    height: 19vw;
+    width: 19vw;
+  }
 }
