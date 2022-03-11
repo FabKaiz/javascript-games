@@ -3,6 +3,7 @@ const mole     = document.querySelector('.mole');
 const timeLeft = document.querySelector('#time-left');
 const score    = document.querySelector('#score');
 const startBtn = document.querySelector('#start-button');
+const stopBtn  = document.querySelector('#stop-button');
 
 let isRunning = false
 let result = 0
@@ -10,6 +11,17 @@ let moleTimer = null
 let moleId
 let gameTimer = 30
 let gameTimerId
+
+const stopTimer = () => {
+  if (!isRunning) return;
+  isRunning = false;
+  clearInterval(moleTimer);
+  clearInterval(gameTimerId);
+  gameTimer = 30;
+  timeLeft.textContent = gameTimer;
+  result = 0
+  score.textContent = result
+};
 
 const randomSquare = () => {
   squares.forEach(square => {
@@ -73,3 +85,5 @@ function countdown() {
     timeLeft.textContent = gameTimer;
   }
 }
+
+stopBtn.addEventListener('click', () => stopTimer())
