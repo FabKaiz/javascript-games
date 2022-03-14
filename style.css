@@ -34,7 +34,7 @@ p {
 }
 
 .container {
-  margin: 0rem 4rem
+  margin: 0rem 4rem;
 }
 
 .flex-container {
@@ -95,4 +95,25 @@ a {
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
+  position: relative;
+
+}
+
+#game-screenshot {
+  position: absolute;
+  border-radius: 0.5rem;
+  width: 30vw;
+  opacity: 0;
+  height: auto;
+  left: 0;
+  top: 0;
+  transition: all 0.3s;
+  visibility: hidden;
+}
+
+.right {
+  top: 30px !important;
+  left: inherit !important;
+  right: 0 !important;
+
 }
