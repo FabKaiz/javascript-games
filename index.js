@@ -10,7 +10,7 @@ const hideImg = (e) => {
 // Reveal image and set styles animations
 const showImg = (e) => {
   e.target.nextElementSibling.style.visibility = 'visible';
-  e.target.nextElementSibling.style.opacity = '0.8'
+  e.target.nextElementSibling.style.opacity = '1'
 
   if (e.target.nextElementSibling.classList.contains('right')) {
     e.target.nextElementSibling.style.transform = "translatey(80px) rotate(3deg)";
