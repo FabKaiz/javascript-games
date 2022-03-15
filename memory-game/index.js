@@ -75,16 +75,15 @@ const cardsWon       = []
 
 const checkMatch = () => {
   const allCards = document.querySelectorAll("img")
-  
-  if (cardsClickedId[0] !== cardsClickedId[1]) {
-    if (cardsClicked[0] === cardsClicked[1]) {
-      allCards[cardsClickedId[0]].style.opacity = "0";
-      allCards[cardsClickedId[0]].style.visibility = "hidden";
-      allCards[cardsClickedId[1]].style.opacity = "1";
-      allCards[cardsClickedId[1]].style.visibility = "hidden";
-      cardsWon.push(cardsClicked)
-    }
-  } 
+
+  // Reveal if its a match
+  if (cardsClicked[0] === cardsClicked[1]) {
+    allCards[cardsClickedId[0]].style.opacity = "0";
+    allCards[cardsClickedId[0]].style.visibility = "hidden";
+    allCards[cardsClickedId[1]].style.opacity = "1";
+    allCards[cardsClickedId[1]].style.visibility = "hidden";
+    cardsWon.push(cardsClicked)
+  }
 
   // Reset the Array and the card cover if necessary 
   setTimeout(() => {
@@ -94,12 +93,14 @@ const checkMatch = () => {
     cardsClickedId.splice(0, cardsClickedId.length);
   }, 200);
 
+  // Set score
   result.innerHTML = cardsWon.length
 
   // Handle win
   if (cardsWon.length === cardArray.length / 2) {
     document.querySelector('h3').innerText= 'Congratulations, you win !!!'
     const winButton = document.createElement('button');
+    winButton.classList.add('back-button');
     winButton.innerHTML = 'Restart'
     document.getElementById('restart').appendChild(winButton)
     winButton.onclick = () => window.location.reload()
