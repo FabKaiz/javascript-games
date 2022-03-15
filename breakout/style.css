@@ -92,7 +92,7 @@ a {
 /* ======================================================================= */
 
 .game {
-  width: 600px;
+  width: 640px;
   height: 300px;
   border: 1px solid black;
   position: relative;
@@ -100,7 +100,22 @@ a {
 
 .block {
   position: absolute;
-  width: 100px;
+  width: 80px;
   height: 20px;
   background-color: #F49867;
+}
+
+.userBar {
+  position: absolute;
+  width: 80px;
+  height: 20px;
+  background-color:#AE67FA;
+}
+
+.ball {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: aquamarine;
+  border-radius: 50%;
 }
