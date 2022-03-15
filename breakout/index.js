@@ -1,20 +1,27 @@
 const gameContainer = document.querySelector('.game');
-const scoreDisplay = document.querySelector('.score')
+const scoreDisplay = document.querySelector('.score');
+const startBtn = document.getElementById('start-button');
+const instructions = document.querySelector('.info')
 const blockWidth = 80;
 const blockHeight = 20;
 const borderWidth = 640;
 const borderHeight = 300;
 const ballDiameter = 10;
+let ball
+let userBar
 let timerId
 let xDirection = 2;
 let yDirection = 2;
 let score = 0;
+let hasRunned = false;
+
 
 const userStartPosition = [280, 10]
-let currentPosition = userStartPosition
+let currentPosition = [280, 10]
 
 const ballStartPosition = [315, 40]
-let ballCurrentPosition = ballStartPosition
+let ballCurrentPosition = [315, 40]
+
 
 class Block {
   //Initate every corner of the block
@@ -26,64 +33,72 @@ class Block {
   }
 }
 
-const blocks = [
-  new Block(10, 270),
-  new Block(100, 270),
-  new Block(190, 270),
-  new Block(280, 270),
-  new Block(370, 270),
+let blocks = [
+  // new Block(10, 270),
+  // new Block(100, 270),
+  // new Block(190, 270),
+  // new Block(280, 270),
+  // new Block(370, 270),
   new Block(460, 270),
-  new Block(550, 270),
+  // new Block(550, 270),
 
-  new Block(10, 240),
-  new Block(100, 240),
-  new Block(190, 240),
-  new Block(280, 240),
-  new Block(370, 240),
-  new Block(460, 240),
-  new Block(550, 240),
+  // new Block(10, 240),
+  // new Block(100, 240),
+  // new Block(190, 240),
+  // new Block(280, 240),
+  // new Block(370, 240),
+  // new Block(460, 240),
+  // new Block(550, 240),
 
-  new Block(10, 210),
-  new Block(100, 210),
-  new Block(190, 210),
-  new Block(280, 210),
-  new Block(370, 210),
-  new Block(460, 210),
-  new Block(550, 210),
+  // new Block(10, 210),
+  // new Block(100, 210),
+  // new Block(190, 210),
+  // new Block(280, 210),
+  // new Block(370, 210),
+  // new Block(460, 210),
+  // new Block(550, 210),
 ]
 
 const addBlocks = () => {
   for (let i = 0; i < blocks.length; i++) {
     const block = document.createElement('div');
     block.classList.add('block');
+    block.style.opacity = 0;
+    setTimeout(() => block.style.opacity = 1, 100);
     block.style.left = blocks[i].bottomLeft[0] + 'px'
     block.style.bottom = blocks[i].bottomLeft[1] + 'px'
     gameContainer.appendChild(block);
     
   }
 }
-addBlocks()
 
 
 // draw the user bar
-const drawUserBar = () => {
+const drawUserBar = (userBar) => {
   userBar.style.left = currentPosition[0] + 'px'
   userBar.style.bottom = currentPosition[1] + 'px'
 }
 
 
 // draw the ball
-const drawBall = () => {
+const drawBall = (ball) => {
   ball.style.left = ballCurrentPosition[0] + 'px'
   ball.style.bottom = ballCurrentPosition[1] + 'px'
 }
 
+const createBall = (ball) => {
+  ball.style.left = ballStartPosition[0] + 'px'
+  ball.style.bottom = ballStartPosition[1] + 'px'
+}
+
 
 // Add the user bar
-const userBar = document.createElement('div');
-userBar.classList.add('userBar');
-drawUserBar()
-gameContainer.appendChild(userBar);
+function addUserBar() {
+  userBar = document.createElement('div');
+  userBar.classList.add('userBar');
+  drawUserBar(userBar)
+  gameContainer.appendChild(userBar);
+}
 
 
 // Move the user bar
@@ -92,13 +107,13 @@ const moveUserBar = (e) => {
     case 'ArrowLeft':
       if (currentPosition[0] > 0) {
         currentPosition[0] -= 10
-        drawUserBar()
+        drawUserBar(userBar)
       }
       break;
     case 'ArrowRight':
       if (currentPosition[0] < borderWidth - blockWidth) {
         currentPosition[0] += 10
-        drawUserBar()
+        drawUserBar(userBar)
       }
       break;
   }
@@ -106,22 +121,22 @@ const moveUserBar = (e) => {
 
 
 // Add ball
-const ball = document.createElement('div');
-ball.classList.add('ball');
-drawBall()
-gameContainer.appendChild(ball);
+function addBall() {
+  ball = document.createElement('div');
+  ball.classList.add('ball');
+  drawBall(ball)
+  gameContainer.appendChild(ball);
+}
 
 
 // Move balll
 const moveBall = () => {
   ballCurrentPosition[0] += xDirection
   ballCurrentPosition[1] += yDirection
-  drawBall()
+  drawBall(ball)
   checkCollisions()
-
 }
 
-timerId = setInterval(moveBall, 30);
 
 const changeDirection = () => {
 
@@ -163,13 +178,16 @@ const checkCollisions = () => {
       blocks.splice(i, 1)
       changeDirection()
       score++
-      scoreDisplay.innerHTML = score
+      scoreDisplay.innerHTML = 'Score : ' + score
 
       // Check for the win
       if (blocks.length === 0) {
         scoreDisplay.innerHTML = 'YOU WIN!'
         clearInterval(timerId)
         document.removeEventListener('keydown', moveUserBar)
+        instructions.style.opacity = 1
+        instructions.style.top = "330px"
+        instructions.innerHTML = "You win!"
       }
     }
     
@@ -199,9 +217,72 @@ const checkCollisions = () => {
     clearInterval(timerId)
     scoreDisplay.innerHTML = "Game over !"
     document.removeEventListener('keydown', moveUserBar)
+    instructions.style.opacity = 1
+    instructions.style.top = "350px"
+    instructions.innerHTML = "GAME OVER"
   }
 }
 
+const startGame = () => {
+  startBtn.innerText = "Restart"
+
+  if (hasRunned) {
+    clearInterval(timerId)
+    addUserBar()
+
+    currentPosition = [280, 10]
+    ballCurrentPosition = [315, 40]
+    xDirection = 2;
+    yDirection = 2;
+    score = 0;
+    scoreDisplay.innerHTML = "Score : 0"
+
+    gameContainer.innerHTML = ''
+    blocks = [
+      new Block(10, 270),
+      new Block(100, 270),
+      new Block(190, 270),
+      new Block(280, 270),
+      new Block(370, 270),
+      new Block(460, 270),
+      new Block(550, 270),
+    
+      new Block(10, 240),
+      new Block(100, 240),
+      new Block(190, 240),
+      new Block(280, 240),
+      new Block(370, 240),
+      new Block(460, 240),
+      new Block(550, 240),
+    
+      new Block(10, 210),
+      new Block(100, 210),
+      new Block(190, 210),
+      new Block(280, 210),
+      new Block(370, 210),
+      new Block(460, 210),
+      new Block(550, 210),
+    ]
+    document.addEventListener('keydown', moveUserBar)
+  }
+
+  instructions.style.opacity = 0
+  
+  setTimeout(() => {
+    gameContainer.innerHTML = ''
+    addUserBar()
+
+    addBlocks()
+    addBall()
+    
+    timerId = setInterval(moveBall, 30);
+  }, 100);
 
 
+  hasRunned = true;  
+}
+addUserBar()
+
+
+startBtn.addEventListener('click', startGame)
 document.addEventListener('keydown', moveUserBar)

@@ -26,6 +26,7 @@ body {
   background-image: linear-gradient(89.97deg, #AE67FA 1.84%, #F49867 102.67%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  margin: 0;
 }
 
 .container {
@@ -92,10 +93,21 @@ a {
 /* ======================================================================= */
 
 .game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 640px;
   height: 300px;
-  border: 1px solid black;
   position: relative;
+  background-color: #252133;
+}
+
+ p {
+  font-size: 2rem;
+  color: #929292;
+  transition: all 0.4s;
+  position: absolute;
+  top: 280px;
 }
 
 .block {
@@ -103,6 +115,8 @@ a {
   width: 80px;
   height: 20px;
   background-color: #F49867;
+  opacity: 0;
+  transition: all 0.4s;
 }
 
 .userBar {
@@ -110,6 +124,8 @@ a {
   width: 80px;
   height: 20px;
   background-color:#AE67FA;
+  transition: all 0.2s;
+
 }
 
 .ball {
@@ -118,4 +134,8 @@ a {
   height: 10px;
   background-color: aquamarine;
   border-radius: 50%;
+}
+
+.button-start {
+  margin-top: 1rem;
 }
