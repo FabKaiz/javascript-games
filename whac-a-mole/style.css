@@ -31,6 +31,7 @@ body {
   background-image: linear-gradient(89.97deg, #AE67FA 1.84%, #F49867 102.67%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  margin: 0;
 }
 
 .container {
@@ -95,15 +96,15 @@ a {
 }
 
 .grid {
-  max-height: 606px;
-  max-width: 606px;
+  max-height: 28vw;
+  max-width: 28vw;
   display: flex;
   flex-wrap: wrap;
 }
 
 .square {
-  height: 200px;
-  width: 200px;
+  height: 9vw;
+  width: 9vw;
   border: 1px solid #ffe5e5;
   position: relative;
   overflow: hidden;
@@ -112,8 +113,8 @@ a {
 
 .mole {
   cursor: pointer;
-  height: 200px;
-  width: 200px;
+  height: 9vw;
+  width: 9vw;
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
@@ -121,15 +122,18 @@ a {
 }
 
 img {
-  height: 200px;
-  width: 200px;
-  margin-top: 200px;
+  height: 9vw;
+  width: 9vw;
+  margin-top: 9vw;
   transition: all 0.5s;
 }
 
 .button-start {
   margin-top: 2rem;
-  justify-content: space-around;
+}
+
+#start-button {
+  margin-right: 2rem;
 }
 
 @media screen and (max-width: 751px) {
