@@ -8,6 +8,7 @@ const ballDiameter = 10;
 let timerId
 let xDirection = 2;
 let yDirection = 2;
+let score = 0;
 
 const userStartPosition = [280, 10]
 let currentPosition = userStartPosition
@@ -87,7 +88,6 @@ gameContainer.appendChild(userBar);
 
 // Move the user bar
 const moveUserBar = (e) => {
-  console.log(currentPosition);
   switch (e.key) {
     case 'ArrowLeft':
       if (currentPosition[0] > 0) {
@@ -124,27 +124,23 @@ const moveBall = () => {
 timerId = setInterval(moveBall, 30);
 
 const changeDirection = () => {
-  
+
   if (xDirection === 2 && yDirection === 2) {
-    // Go down right
     yDirection = -2
     return
   }
 
   if (xDirection === 2 && yDirection === -2) {
-    // Go left down
     xDirection = -2
     return
   }
 
   if (xDirection === -2 && yDirection === -2) {
-    // Go up left
     yDirection = 2
     return
   }
 
   if (xDirection === -2 && yDirection === 2) {
-    // Go down left
     xDirection = 2
     return
   }
@@ -153,9 +149,33 @@ const changeDirection = () => {
 
 // Check for collisions
 const checkCollisions = () => {
+  // Check for block collisions
+  for (let i = 0; i < blocks.length; i++) {
+    if (
+      ballCurrentPosition[0] > blocks[i].bottomLeft[0] &&
+      ballCurrentPosition[0] < blocks[i].bottomRight[0] &&
+      (ballCurrentPosition[1] + ballDiameter) > blocks[i].bottomLeft[1] &&
+      (ballCurrentPosition[1] + ballDiameter) < blocks[i].topLeft[1]
+    ) {
+      const allBlocks = [...document.querySelectorAll('.block')];
+
+      allBlocks[i].classList.remove('block')
+      blocks.splice(i, 1)
+      changeDirection()
+      score++
+      scoreDisplay.innerHTML = score
+
+      // Check for the win
+      if (blocks.length === 0) {
+        scoreDisplay.innerHTML = 'YOU WIN!'
+        clearInterval(timerId)
+        document.removeEventListener('keydown', moveUserBar)
+      }
+    }
+    
+  }
+  
   // Check for wall collisions
-  // console.log(ballCurrentPosition);
-  console.log(xDirection, yDirection);
   if (
     ballCurrentPosition[0] >= borderWidth - ballDiameter ||
     ballCurrentPosition[1] >= borderHeight - ballDiameter ||
@@ -164,10 +184,21 @@ const checkCollisions = () => {
     changeDirection();
   }
 
+  //Check for user bar collision
+  if (
+    ballCurrentPosition[0] > currentPosition[0] &&
+    ballCurrentPosition[0] < currentPosition[0] + blockWidth &&
+    ballCurrentPosition[1] > currentPosition[1] &&
+    ballCurrentPosition[1] < currentPosition[1] + blockHeight
+  ) {
+    changeDirection()
+  }
+
   // Check for game over
   if (ballCurrentPosition[1] <= 0) {
     clearInterval(timerId)
     scoreDisplay.innerHTML = "Game over !"
+    document.removeEventListener('keydown', moveUserBar)
   }
 }
 
