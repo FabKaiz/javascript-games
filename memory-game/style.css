@@ -74,8 +74,8 @@ h3 {
 
 
 img {
-  height: 15vw;
-  width: 15vw;
+  height: 10vw;
+  width: 10vw;
   cursor: pointer;
   transition: 0.2s;
   max-width: 220px;
