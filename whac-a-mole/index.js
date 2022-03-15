@@ -12,6 +12,7 @@ let moleId
 let gameTimer = 30
 let gameTimerId
 
+// Reset timer, score and mole
 const stopTimer = () => {
   if (!isRunning) return;
   isRunning = false;
@@ -46,6 +47,7 @@ const randomSquare = () => {
 }
 
 squares.forEach(square => {
+  // When a mole is clicked remove the class and add point to score
   square.addEventListener('mousedown', () => {
     if (square.id === moleId) {
       result++
@@ -62,6 +64,7 @@ const moveTheMole = () => {
   moleTimer = setInterval(() => randomSquare(), 1000);
 }
 
+// Start game or reload page if game ended
 startBtn.addEventListener('click', () => {
   if (gameTimer == 0 && !isRunning) {
     window.location.reload()
