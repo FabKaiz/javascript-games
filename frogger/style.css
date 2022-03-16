@@ -92,16 +92,27 @@ a {
 /* -============ END OF BASIC STYLE ============- */
 /* ======================================================================= */
 
+.button-start {
+  margin-top: 1rem;
+}
+
 .game {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 640px;
-  height: 300px;
-  position: relative;
+  flex-wrap: wrap;
+  width: 639px;
+  height: 639px;
   background-color: #252133;
 }
 
-.button-start {
-  margin-top: 1rem;
+.game div {
+  height: 71px;
+  width: 71px;
+}
+
+.ending-block {
+  background-color: #AE67FA;
+}
+
+.starting-block {
+  background-color:#F49867;
 }
