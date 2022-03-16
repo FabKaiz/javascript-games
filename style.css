@@ -125,6 +125,10 @@ a {
   top: 10vw !important;
 }
 
+.frogger {
+  top: 15vw !important;
+}
+
 @media screen and (max-width: 1560px) {
   #game-screenshot {
     position: absolute;
