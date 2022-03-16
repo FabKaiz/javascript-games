@@ -126,16 +126,14 @@ h2 {
   background-color: #261c4b;
 }
 
-.frog {
-  background-image: url(./images/frog.png);
-  transform: rotate(180deg) !important;
-  background-size: cover;
-}
-
 .l1, .l2, .l3 {
-  background-image: url(./images/log.png);
+
+  background-position: left top;
   background-size: contain;
   background-color: rgba(76, 178, 212, 0.938);
+  background-image: url(./images/log.png);
+
+  /* opacity: 0.1; */
 }
 
 .l4, .l5 {
@@ -155,4 +153,20 @@ h2 {
 
 .rotate {
   transform: rotate(-90deg);
+}
+
+.frog {
+  background-size: cover;
+  background-image: url(./images/frog.png);
+}
+
+.frog-log {
+  background-size: contain;
+  background-image: url(./images/frog.png), url(./images/log.png);
+}
+
+.frog-rotated {
+  background-size: cover;
+  background-image: url(./images/frog.png);
+  transform: rotate(0deg);
 }

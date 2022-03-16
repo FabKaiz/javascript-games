@@ -12,6 +12,8 @@ let currentIndex = 76;
 
 const moveFrog = (e) => {
   squares[currentIndex].classList.remove('frog');
+  squares[currentIndex].classList.remove('frog-log');
+  squares[currentIndex].classList.remove('frog-rotated')
 
   switch (e.key) {
     case 'ArrowLeft':
@@ -27,7 +29,18 @@ const moveFrog = (e) => {
       if (currentIndex < squares.length - gameBlockWidth) currentIndex += gameBlockWidth;
       break;
   }
-  squares[currentIndex].classList.add('frog')
+
+  if (
+    squares[currentIndex].classList.contains("l1") ||
+    squares[currentIndex].classList.contains("l2") ||
+    squares[currentIndex].classList.contains("l3")
+  ) {
+    squares[currentIndex].classList.add('frog-log')
+  } else if (squares[currentIndex].classList.contains("rotate")) {
+    squares[currentIndex].classList.add('frog-rotated')
+  }else {
+    squares[currentIndex].classList.add('frog')
+  }
 }
 
 const autoMoveObject = () => {
@@ -117,6 +130,10 @@ const moveCarRight = (carRight) => {
       carRight.classList.remove('c3')
       carRight.classList.add('c2')
   }
+}
+
+const lose = () => {
+
 }
 
 setInterval(autoMoveObject, 1000);
