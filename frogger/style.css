@@ -54,9 +54,9 @@ a {
 
 .back-button {
   display: grid;
-  width: 250px;
+  width: 270px;
   place-content: center;
-	padding: 10px 30px;
+	padding: 15px 30px;
   font-size: 24px;
   cursor: pointer;
 	border-radius: 7px;
@@ -96,6 +96,10 @@ a {
   margin-top: 1rem;
 }
 
+h2 {
+  margin-bottom: 0;
+}
+
 .game {
   display: flex;
   flex-wrap: wrap;
@@ -115,4 +119,13 @@ a {
 
 .starting-block {
   background-color:#F49867;
+}
+
+.log-left,
+.log-right {
+  background-color: rgba(76, 178, 212, 0.938);
+}
+.car-left,
+.car-right {
+  background-color: #261c4b;
 }
