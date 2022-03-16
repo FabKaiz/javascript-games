@@ -4,6 +4,8 @@ const startBtn          = document.getElementById('start-button');
 const squares           = document.querySelectorAll('.game div');
 const logsLeft          = document.querySelectorAll('.log-left');
 const logsRight         = document.querySelectorAll('.log-right');
+const carsLeft          = document.querySelectorAll('.car-left');
+const carsRight         = document.querySelectorAll('.car-right');
 const gameBlockWidth = 9
 
 let currentIndex = 76;
@@ -28,9 +30,11 @@ const moveFrog = (e) => {
   squares[currentIndex].classList.add('frog')
 }
 
-const autoMoveLogs = () => {
+const autoMoveObject = () => {
   logsLeft.forEach(logleft => moveLogLeft(logleft))
   logsRight.forEach(logRight => moveLogRight(logRight))
+  carsLeft.forEach(carleft => moveCarLeft(carleft))
+  carsRight.forEach(carRight => moveCarRight(carRight))
 }
 
 const moveLogLeft = (logleft) => {
@@ -83,6 +87,38 @@ const moveLogRight = (logRight) => {
   }
 }
 
-setInterval(autoMoveLogs, 1000);
+const moveCarLeft = (carLeft) => {
+  switch (true) {
+    case carLeft.classList.contains('c1') :
+      carLeft.classList.remove('c1')
+      carLeft.classList.add('c2')
+      break
+    case carLeft.classList.contains('c2') :
+      carLeft.classList.remove('c2')
+      carLeft.classList.add('c3')
+      break
+    case carLeft.classList.contains('c3') :
+      carLeft.classList.remove('c3')
+      carLeft.classList.add('c1')
+  }
+}
+
+const moveCarRight = (carRight) => {
+  switch (true) {
+    case carRight.classList.contains('c1') :
+      carRight.classList.remove('c1')
+      carRight.classList.add('c3')
+      break
+    case carRight.classList.contains('c2') :
+      carRight.classList.remove('c2')
+      carRight.classList.add('c1')
+      break
+    case carRight.classList.contains('c3') :
+      carRight.classList.remove('c3')
+      carRight.classList.add('c2')
+  }
+}
+
+setInterval(autoMoveObject, 1000);
 
 document.addEventListener('keyup', moveFrog);
