@@ -118,18 +118,29 @@ h2 {
 }
 
 .starting-block {
-  background-color:#F49867;
+  background-color:#f4986756;
 }
 
-.log-left,
-.log-right {
-  background-color: rgba(76, 178, 212, 0.938);
-}
 .car-left,
 .car-right {
   background-color: #261c4b;
 }
 
 .frog {
-  background-color: darkolivegreen;
+  background-image: url(./images/frog.png);
+  transform: rotate(180deg);
+  background-size: cover;
+}
+
+.l1, .l2, .l3 {
+  /* background-color:rgb(82, 52, 30); */
+  background-image: url(./images/log.png);
+  background-size: contain;
+  background-color: rgba(76, 178, 212, 0.938);
+
+
+}
+
+.l4, .l5 {
+  background-color: rgba(76, 178, 212, 0.938);
 }
