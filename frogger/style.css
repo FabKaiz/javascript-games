@@ -127,13 +127,10 @@ h2 {
 }
 
 .l1, .l2, .l3 {
-
   background-position: left top;
   background-size: contain;
   background-color: rgba(76, 178, 212, 0.938);
   background-image: url(./images/log.png);
-
-  /* opacity: 0.1; */
 }
 
 .l4, .l5 {
