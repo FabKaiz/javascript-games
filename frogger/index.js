@@ -6,10 +6,13 @@ const logsLeft          = document.querySelectorAll('.log-left');
 const logsRight         = document.querySelectorAll('.log-right');
 const carsLeft          = document.querySelectorAll('.car-left');
 const carsRight         = document.querySelectorAll('.car-right');
-const gameOverText      = document.getElementById('game-over')
-const gameBlockWidth = 9
+const endGameMsg        = document.getElementById('game-msg');
+const gameBlockWidth    = 9;
 
+let timerId;
 let currentIndex = 76;
+let currentTime = 20;
+let isWinOrLose = false;
 
 const moveFrog = (e) => {
   squares[currentIndex].classList.remove('frog');
@@ -44,6 +47,11 @@ const moveFrog = (e) => {
   } else {
     squares[currentIndex].classList.add('frog')
   }
+}
+
+const startTimer = () => {
+  currentTime--
+  timeLeftDisplay.textContent = currentTime
 }
 
 const autoMoveObject = () => {
@@ -139,19 +147,74 @@ const lose = () => {
   if (
     squares[currentIndex].classList.contains('c1') ||
     squares[currentIndex].classList.contains('l4') ||
-    squares[currentIndex].classList.contains('l5')
+    squares[currentIndex].classList.contains('l5') ||
+    currentTime <= 0
   ) {
     resultDisplay.textContent = 'Game Over!'
     clearInterval(timerId)
+    clearInterval(checkWinOrLoseTimer)
+    clearInterval(gameTimerId)
     squares[currentIndex].classList.remove('frog')
     squares[currentIndex].classList.remove('frog-rotated')
     document.removeEventListener('keyup', moveFrog)
-    gameOverText.style.opacity = '1'
-    gameOverText.style.paddingTop = '287px'
+    endGameMsg.innerText = 'GAME OVER!'
+    endGameMsg.style.color = '#7a0c43'
+    endGameMsg.style.opacity = '1'
+    endGameMsg.style.paddingTop = '287px'
+    isWinOrLose = true
+    startBtn.innerText = 'Try Again'
   }
 }
 
-timerId = setInterval(autoMoveObject, 1000);
-loseTimerId = setInterval(lose, 100);
+const win = () => {
+  if (squares[currentIndex].classList.contains('ending-block')) {
+    resultDisplay.textContent = 'YOU WIN!'
+    clearInterval(timerId)
+    clearInterval(checkWinOrLoseTimer)
+    clearInterval(gameTimerId)
+    document.removeEventListener('keyup', moveFrog)
+    endGameMsg.innerText = 'YOU WIN!'
+    endGameMsg.style.color = 'darkseagreen'
+    endGameMsg.style.opacity = '1'
+    endGameMsg.style.paddingTop = '287px'
+    isWinOrLose = true
+    startBtn.innerText = 'Try Again'
+  }
+}
 
-document.addEventListener('keyup', moveFrog);
+const checkForWinOrLose = () => {
+  lose()
+  win()
+}
+
+const startPauseGame = () => {
+  if (isWinOrLose) {
+    squares[currentIndex].classList.remove('frog')
+    squares[currentIndex].classList.remove('frog-rotated')
+
+    currentIndex = 76
+    squares[currentIndex].classList.add('frog')
+    endGameMsg.style.opacity = '0'
+    endGameMsg.style.paddingTop = '587px'
+    
+    resultDisplay.textContent = '20 seconds to get to the purple square!'
+    startBtn.innerText = 'Start/Pause game'
+    timerId = setInterval(autoMoveObject, 750);
+    gameTimerId = setInterval(startTimer, 1000)
+    checkWinOrLoseTimer = setInterval(checkForWinOrLose, 100);
+    document.addEventListener('keyup', moveFrog);
+  } else if (timerId) {
+    clearInterval(timerId)
+    clearInterval(checkWinOrLoseTimer)
+    clearInterval(gameTimerId)
+    timerId = null
+    document.removeEventListener('keyup', moveFrog)
+  } else {
+    timerId = setInterval(autoMoveObject, 750);
+    gameTimerId = setInterval(startTimer, 1000)
+    checkWinOrLoseTimer = setInterval(checkForWinOrLose, 100);
+    document.addEventListener('keyup', moveFrog);
+  }
+}
+
+startBtn.addEventListener('click', startPauseGame)
