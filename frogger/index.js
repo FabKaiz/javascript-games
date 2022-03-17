@@ -1,11 +1,12 @@
 const timeLeftDisplay   = document.getElementById('time-left');
-const resultLeftDisplay = document.getElementById('result');
+const resultDisplay     = document.getElementById('result');
 const startBtn          = document.getElementById('start-button');
 const squares           = document.querySelectorAll('.game div');
 const logsLeft          = document.querySelectorAll('.log-left');
 const logsRight         = document.querySelectorAll('.log-right');
 const carsLeft          = document.querySelectorAll('.car-left');
 const carsRight         = document.querySelectorAll('.car-right');
+const gameOverText      = document.getElementById('game-over')
 const gameBlockWidth = 9
 
 let currentIndex = 76;
@@ -38,7 +39,9 @@ const moveFrog = (e) => {
     squares[currentIndex].classList.add('frog-log')
   } else if (squares[currentIndex].classList.contains("rotate")) {
     squares[currentIndex].classList.add('frog-rotated')
-  }else {
+  } else if (squares[currentIndex].classList.contains('c1')) {
+    return
+  } else {
     squares[currentIndex].classList.add('frog')
   }
 }
@@ -133,9 +136,22 @@ const moveCarRight = (carRight) => {
 }
 
 const lose = () => {
-
+  if (
+    squares[currentIndex].classList.contains('c1') ||
+    squares[currentIndex].classList.contains('l4') ||
+    squares[currentIndex].classList.contains('l5')
+  ) {
+    resultDisplay.textContent = 'Game Over!'
+    clearInterval(timerId)
+    squares[currentIndex].classList.remove('frog')
+    squares[currentIndex].classList.remove('frog-rotated')
+    document.removeEventListener('keyup', moveFrog)
+    gameOverText.style.opacity = '1'
+    gameOverText.style.paddingTop = '287px'
+  }
 }
 
-setInterval(autoMoveObject, 1000);
+timerId = setInterval(autoMoveObject, 1000);
+loseTimerId = setInterval(lose, 100);
 
 document.addEventListener('keyup', moveFrog);
