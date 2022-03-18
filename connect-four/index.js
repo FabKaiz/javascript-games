@@ -106,7 +106,7 @@ const win = () => {
   endGameMsg.style.color = 'darkseagreen'
   endGameMsg.style.visibility = 'visible'
   endGameMsg.style.opacity = '1'
-  endGameMsg.style.paddingTop = '348px'
+  endGameMsg.style.paddingTop = '273px'
   restartBtn.style.opacity = '1'
 }
 
@@ -178,17 +178,14 @@ createGame()
 restartBtn.addEventListener('click', () => {
   const endGameMsg = document.getElementById('game-msg');
 
+  endGameMsg.style.paddingTop = '373px'
   endGameMsg.style.color = 'darkseagreen'
   endGameMsg.style.visibility = 'hidden'
   endGameMsg.style.opacity = '0'
-  endGameMsg.style.paddingTop = '448px'
   restartBtn.style.opacity = '0'
   gameContainer.innerHTML = '<p id="game-msg"></p>'
   resultDisplay.innerText = `Player ${currentPlayer} start`
 
   addBlocks()
-  // const squares = [...document.querySelectorAll('.game div')]
   createGame()
-
-
 })
