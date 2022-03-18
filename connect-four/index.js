@@ -3,7 +3,6 @@ const resultDisplay        = document.getElementById('result');
 const restartBtn           = document.getElementById('start-button');
 const gameContainer        = document.querySelector('.game');
 const endGameMsg           = document.getElementById('game-msg');
-console.log(endGameMsg);
 
 let blocks = 42
 let bottomGameBlock = 7
@@ -159,6 +158,4 @@ for (let i = 0; i < squares.length; i++) {
     } else alert('cant go here')
     checkBoard()
   })
-  console.log('clicked');
-  
 }
