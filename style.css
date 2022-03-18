@@ -128,6 +128,10 @@ a {
 .frogger {
   top: 15vw !important;
 }
+.connect-four {
+  top: 15vw !important;
+
+}
 
 @media screen and (max-width: 1560px) {
   #game-screenshot {
