@@ -159,12 +159,12 @@ const createGame = () => {
           squares[i].classList.add('taken');
           squares[i].classList.add('player1');
           currentPlayer = 2
-          currentPlayerDisplay. innerHTML = currentPlayer
+          currentPlayerDisplay. innerHTML = `${currentPlayer}  <span class="player${currentPlayer}-round"></span>`
         } else if (currentPlayer == 2) {
           squares[i].classList.add('taken');
           squares[i].classList.add('player2');
           currentPlayer = 1
-          currentPlayerDisplay. innerHTML = currentPlayer
+          currentPlayerDisplay. innerHTML = `${currentPlayer}  <span class="player${currentPlayer}-round"></span>`
         }
       } else alert("can't go here")
       checkBoard()

@@ -100,6 +100,13 @@ h2 {
   margin-bottom: 0;
 }
 
+h3 {
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .game {
   display: flex;
   flex-wrap: wrap;
@@ -148,4 +155,56 @@ h2 {
 .player2 {
   background-color:#f4bc67 !important;
   border-radius: 50%;
+}
+
+.player-info {
+  margin: 0;
+  justify-content: space-evenly;
+  width: 770px;
+}
+
+.player-info p {
+  margin: 0;
+}
+
+.player1-round {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: #7a0c43;
+  background-color: #7a0c43;
+  display: inline-block;
+  margin-left: 0.7rem;
+}
+
+.player2-round {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: #f4bc67;
+  background-color: #f4bc67;
+  display: inline-block;
+  margin: 0;
+  margin-left: 0.5rem;
+}
+
+.player-info-color p {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.3rem;
+}
+
+#current-player {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 0.4rem;
+}
+
+#current-player .player1-round {
+  margin-left: 0.3rem;
+}
+
+#current-player .player2-round {
+  margin-left: 0.3rem;
 }
