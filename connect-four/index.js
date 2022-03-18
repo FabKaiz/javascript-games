@@ -2,7 +2,7 @@ const currentPlayerDisplay = document.getElementById('current-player');
 const resultDisplay        = document.getElementById('result');
 const restartBtn           = document.getElementById('start-button');
 const gameContainer        = document.querySelector('.game');
-const endGameMsg           = document.getElementById('game-msg');
+// const endGameMsg           = document.getElementById('game-msg');
 
 let blocks = 42
 let bottomGameBlock = 7
@@ -92,22 +92,28 @@ const addBlocks = () => {
     bottomBlock.classList.add('taken');
     gameContainer.appendChild(bottomBlock);
   }
+  const endGameMsg = document.createElement("p");
+  endGameMsg.id ='game-msg';
+  gameContainer.appendChild(endGameMsg);
 };
 
 addBlocks()
 
-const squares = [...document.querySelectorAll('.game div')]
 
 const win = () => {
-  // document.removeEventListener('click')
+  const endGameMsg = document.getElementById('game-msg');
+
   endGameMsg.style.color = 'darkseagreen'
   endGameMsg.style.visibility = 'visible'
   endGameMsg.style.opacity = '1'
-  endGameMsg.style.paddingTop = '287px'
+  endGameMsg.style.paddingTop = '348px'
   restartBtn.style.opacity = '1'
 }
 
 const checkBoard = () => {
+  const squares = [...document.querySelectorAll('.game div')]
+  const endGameMsg = document.getElementById('game-msg');
+
   for (let i = 0; i < winningArrays.length; i++) {
     // Get a winning combination
     const square1 = squares[winningArrays[i][0]];
@@ -140,22 +146,49 @@ const checkBoard = () => {
   }
 }
 
-for (let i = 0; i < squares.length; i++) {
-  squares[i].addEventListener('click', () => {
-    // if square below is already takenn, go on top of it
-    if (squares[i + 7].classList.contains('taken') && !squares[i].classList.contains('taken')) {
-      if (currentPlayer == 1) {
-        squares[i].classList.add('taken');
-        squares[i].classList.add('player1');
-        currentPlayer = 2
-        currentPlayerDisplay. innerHTML = currentPlayer
-      } else if (currentPlayer == 2) {
-        squares[i].classList.add('taken');
-        squares[i].classList.add('player2');
-        currentPlayer = 1
-        currentPlayerDisplay. innerHTML = currentPlayer
-      }
-    } else alert('cant go here')
-    checkBoard()
-  })
+const createGame = () => {
+  const squares = [...document.querySelectorAll('.game div')]
+  console.log(squares);
+
+  for (let i = 0; i < squares.length; i++) {
+    squares[i].addEventListener('click', () => {
+      console.log('ici');
+      // if square below is already takenn, go on top of it
+      if (squares[i + 7].classList.contains('taken') && !squares[i].classList.contains('taken')) {
+        if (currentPlayer == 1) {
+          squares[i].classList.add('taken');
+          squares[i].classList.add('player1');
+          currentPlayer = 2
+          currentPlayerDisplay. innerHTML = currentPlayer
+        } else if (currentPlayer == 2) {
+          squares[i].classList.add('taken');
+          squares[i].classList.add('player2');
+          currentPlayer = 1
+          currentPlayerDisplay. innerHTML = currentPlayer
+        }
+      } else alert("can't go here")
+      checkBoard()
+    })
+  }
 }
+
+createGame()
+
+
+restartBtn.addEventListener('click', () => {
+  const endGameMsg = document.getElementById('game-msg');
+
+  endGameMsg.style.color = 'darkseagreen'
+  endGameMsg.style.visibility = 'hidden'
+  endGameMsg.style.opacity = '0'
+  endGameMsg.style.paddingTop = '448px'
+  restartBtn.style.opacity = '0'
+  gameContainer.innerHTML = '<p id="game-msg"></p>'
+  resultDisplay.innerText = `Player ${currentPlayer} start`
+
+  addBlocks()
+  // const squares = [...document.querySelectorAll('.game div')]
+  createGame()
+
+
+})

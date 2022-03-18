@@ -103,9 +103,9 @@ h2 {
 .game {
   display: flex;
   flex-wrap: wrap;
-  width: 700px;
-  height: 600px;
-  background-color: #252133;
+  width: 770px;
+  height: 660px;
+  background-color: #170947b6;
   overflow: hidden;
   position: relative;
 }
@@ -113,6 +113,11 @@ h2 {
 .game div {
   height: 100px;
   width: 100px;
+  border-radius: 50%;
+  /* background-color: black; */
+  background-color: #252133;
+  border: 5px solid #170947b6;
+
 }
 
 #start-button {
@@ -127,21 +132,21 @@ h2 {
   right: 0px;
   background-color: #2c2c2caf;
   height: 112px;
-  padding: 201px 140px;
-  padding-top: 387px;
+  padding: 201px 153px;
+  padding-top: 448px;
   margin: 0;
-  width: 445px;
+  width: 465px;
   opacity: 0;
   visibility: hidden;
   transition: padding 0.6s, opacity 0.3s;
 }
 
 .player1 {
-  background-color: #7a0c43;
+  background-color: #7a0c43 !important;
   border-radius: 50%;
 }
 
 .player2 {
-  background-color:#28146d;
+  background-color:#f4bc67 !important;
   border-radius: 50%;
 }
