@@ -129,7 +129,6 @@ const checkBoard = () => {
     ) {
       resultDisplay.innerHTML = "Player 1 Wins!"
       endGameMsg.innerText = 'Player 1 Wins!'
-
       win()
     }
     if (
@@ -141,18 +140,15 @@ const checkBoard = () => {
       resultDisplay.innerText = "Player 2 Wins!"
       endGameMsg.innerText = 'Player 2 Wins!'
       win()
-
     }
   }
 }
 
 const createGame = () => {
   const squares = [...document.querySelectorAll('.game div')]
-  console.log(squares);
 
   for (let i = 0; i < squares.length; i++) {
     squares[i].addEventListener('click', () => {
-      console.log('ici');
       // if square below is already takenn, go on top of it
       if (squares[i + 7].classList.contains('taken') && !squares[i].classList.contains('taken')) {
         if (currentPlayer == 1) {
