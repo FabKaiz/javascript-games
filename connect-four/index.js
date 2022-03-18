@@ -163,7 +163,7 @@ const createGame = () => {
           currentPlayerDisplay. innerHTML = `${currentPlayer}  <span class="player${currentPlayer}-round"></span>`
         }
         // Handle clicking above row
-      } else if (squares[i + 14].classList.contains('taken')) {
+      } else if (squares[i + 14].classList.contains('taken') && !squares[i].classList.contains('taken')) {
         if (currentPlayer == 1) {
           squares[i + 7].classList.add('taken');
           squares[i + 7].classList.add('player1');
@@ -175,7 +175,7 @@ const createGame = () => {
           currentPlayer = 1
           currentPlayerDisplay. innerHTML = `${currentPlayer}  <span class="player${currentPlayer}-round"></span>`
         }
-      } else if (squares[i + 21].classList.contains('taken')) {
+      } else if (squares[i + 21].classList.contains('taken') && !squares[i].classList.contains('taken')) {
         if (currentPlayer == 1) {
           squares[i + 14].classList.add('taken');
           squares[i + 14].classList.add('player1');
@@ -187,7 +187,7 @@ const createGame = () => {
           currentPlayer = 1
           currentPlayerDisplay. innerHTML = `${currentPlayer}  <span class="player${currentPlayer}-round"></span>`
         }
-      } else if (squares[i + 28].classList.contains('taken')) {
+      } else if (squares[i + 28].classList.contains('taken') && !squares[i].classList.contains('taken')) {
         if (currentPlayer == 1) {
           squares[i + 21].classList.add('taken');
           squares[i + 21].classList.add('player1');
@@ -199,7 +199,7 @@ const createGame = () => {
           currentPlayer = 1
           currentPlayerDisplay. innerHTML = `${currentPlayer}  <span class="player${currentPlayer}-round"></span>`
         }
-      } else if (squares[i + 35].classList.contains('taken')) {
+      } else if (squares[i + 35].classList.contains('taken') && !squares[i].classList.contains('taken')) {
         if (currentPlayer == 1) {
           squares[i + 28].classList.add('taken');
           squares[i + 28].classList.add('player1');
@@ -211,7 +211,7 @@ const createGame = () => {
           currentPlayer = 1
           currentPlayerDisplay. innerHTML = `${currentPlayer}  <span class="player${currentPlayer}-round"></span>`
         }
-      } else if (squares[i + 42].classList.contains('taken')) {
+      } else if (squares[i + 42].classList.contains('taken') && !squares[i].classList.contains('taken')) {
         if (currentPlayer == 1) {
           squares[i + 35].classList.add('taken');
           squares[i + 35].classList.add('player1');
@@ -223,7 +223,7 @@ const createGame = () => {
           currentPlayer = 1
           currentPlayerDisplay. innerHTML = `${currentPlayer}  <span class="player${currentPlayer}-round"></span>`
         }
-      }
+      } else alert("Can't place here")
       checkBoard()
     })
   }
