@@ -18,6 +18,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  margin-top: -100px;
 }
 
 .title h1 {
@@ -123,7 +125,6 @@ h3 {
   border-radius: 50%;
   background-color: #252133;
   border: 5px solid #170947b6;
-
 }
 
 #start-button {
@@ -207,4 +208,115 @@ h3 {
 
 #current-player .player2-round {
   margin-left: 0.3rem;
+}
+
+@media screen and (max-width: 1950px) and (min-width: 1551px){
+   .game {
+    width: 670px;
+    height: 560px;
+  }
+
+  .game div {
+    width: 85px;
+    height: 83px;
+  }
+  #game-msg {
+    font-size: 4rem;
+    height: 74px;
+    padding: 214px 103px;
+    padding-top: 320px;
+  }
+}
+
+@media screen and (max-width: 1550px) {
+  .game {
+    width: 535px;
+    height: 460px;
+  }
+
+ .game div {
+    width: 66px;
+    height: 66px;
+  }
+
+  #game-msg {
+    font-size: 3rem;
+    height: 74px;
+    padding: 167px 36px;
+    padding-top: 220px !important;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .back-button {
+    width: 180px;
+    font-size: 18px;
+  }
+
+  .title {
+    margin-top: -80px;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .game {
+    width: 420px;
+    height: 360px;
+  }
+
+  .game div {
+    width: 50px;
+    height: 50px;
+  }
+
+  #game-msg {
+    font-size: 2rem;
+    height: 74px;
+    padding: 144px 98px;
+    padding-top: 158px !important;
+    width: 230px;
+  }
+
+  .back-button {
+    width: 170px;
+    font-size: 14px;
+  }
+
+  .title {
+    margin-top: -70px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .game {
+    width: 320px;
+    height: 275px;
+  }
+
+  .game div {
+    width: 35px;
+    height: 35px;
+  }
+
+  #game-msg {
+    font-size: 2rem;
+    height: 74px;
+    padding: 82px 49px;
+    padding-top: 120px !important;
+    width: 230px;
+  }
+
+  .player-info {
+    flex-direction: column-reverse;
+  }
+
+  .back-button {
+    width: 180px;
+    font-size: 18px;
+    padding: 10px 10px;
+  }
+
+  .title {
+    margin-top: -20px;
+  }
 }
