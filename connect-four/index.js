@@ -2,7 +2,6 @@ const currentPlayerDisplay = document.getElementById('current-player');
 const resultDisplay        = document.getElementById('result');
 const restartBtn           = document.getElementById('start-button');
 const gameContainer        = document.querySelector('.game');
-// const endGameMsg           = document.getElementById('game-msg');
 
 let blocks = 42
 let bottomGameBlock = 7
