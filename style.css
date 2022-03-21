@@ -130,7 +130,10 @@ a {
 }
 .connect-four {
   top: 15vw !important;
+}
 
+.space-invaders {
+  top: 19vw !important;
 }
 
 @media screen and (max-width: 1560px) {
