@@ -106,6 +106,11 @@ a {
   position: relative;
 }
 
+.game div {
+  width: 40px;
+  height: 40px;
+}
+
 #game-msg {
   position: absolute;
   font-weight: bold;
@@ -121,4 +126,14 @@ a {
   opacity: 0;
   visibility: hidden;
   transition: padding 0.6s, opacity 0.3s;
+}
+
+.invader {
+  background-color:#AE67FA;
+  border-radius: 50%;
+}
+
+.shooter {
+  background-color:#F49867;
+  border-radius: 0.75rem;
 }
