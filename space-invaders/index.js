@@ -3,8 +3,13 @@ const resultDisplay = document.getElementById('result');
 const startBtn      = document.getElementById('start-button');
 let currentShooterIndex = 202
 let gameWidth = 15
+let direction = 1
+let invadersId
+let goingRight = true
+let removedAliens = []
+let result = 0
 
-// Add div to the game div
+// Add 225 div to the game div
 for (let i = 0; i < 225; i++) {
   const square = document.createElement('div');
   gameContainer.appendChild(square);
@@ -18,15 +23,26 @@ const alienInvaders = [
   30, 31, 32, 33, 34, 35, 36, 37, 38, 39
 ]
 
-const drawGame = () => {
+// Add class of invaders to the specified index
+const drawGameInvaders = () => {
   for (let i = 0; i < alienInvaders.length; i++) {
-    squares[alienInvaders[i]].classList.add('invader');
+    if (!removedAliens.includes(i)) {
+      squares[alienInvaders[i]].classList.add('invader');
+    }
   }
 }
-drawGame()
+drawGameInvaders()
+
+// Remove all invader class from the game
+const removeGameInvaders = () => {
+  for (let i = 0; i < alienInvaders.length; i++) {
+    squares[alienInvaders[i]].classList.remove('invader');
+  }
+}
 
 squares[currentShooterIndex].classList.add('shooter');
 
+// move shooter left or right
 const moveShooter = (e) => {
   squares[currentShooterIndex].classList.remove('shooter');
   switch (e.key) {
@@ -41,3 +57,100 @@ const moveShooter = (e) => {
 }
 
 document.addEventListener('keydown', moveShooter);
+
+
+const moveInvaders = () => {
+  const leftEdge = alienInvaders[0] % gameWidth === 0
+  const rightEdge = alienInvaders[alienInvaders.length - 1] % gameWidth === gameWidth - 1
+  const squares = [...document.querySelectorAll('.game div')];
+
+  removeGameInvaders()
+
+  if (rightEdge && goingRight) {
+    for (let i = 0; i < alienInvaders.length; i++) {
+      alienInvaders[i] += gameWidth + 1
+      direction = -1
+      goingRight = false
+    }
+  } else if (leftEdge && !goingRight) {
+    for (let i = 0; i < alienInvaders.length; i++) {
+      alienInvaders[i] += gameWidth - 1
+      direction = +1
+      goingRight = true
+    }
+  }
+  for (let i = 0; i < alienInvaders.length; i++) {
+    alienInvaders[i] += direction;
+  }
+
+  drawGameInvaders()
+
+  // Check if invaders touch the shooter
+  if (squares[currentShooterIndex].classList.contains('invader', 'shooter')) {
+    resultDisplay.innerHTML = 'GAME OVER!'
+    clearInterval(invadersId)
+    // TODO: SHOW LOOSING MESSAGE
+  }
+
+  // Check if invaders touch the bottom of the screen
+  for (let i = 0; i < alienInvaders.length; i++) {
+    if (alienInvaders[i] > squares.length - gameWidth) {
+      resultDisplay.innerHTML = 'GAME OVER!'
+      clearInterval(invadersId)
+    // TODO: SHOW LOOSING MESSAGE
+    }
+  }
+  // Check for the win
+  if (removedAliens.length === alienInvaders.length) {
+    resultDisplay.innerHTML = 'YOU WIN!'
+    clearInterval(invadersId)
+    document.removeEventListener('keydown', shoot)
+    document.removeEventListener('keydown', moveShooter)
+    // TODO: SHOW WINNING MESSAGE
+  }
+}
+invadersId = setInterval(moveInvaders, 500);
+
+
+const shoot = (e) => {
+  let laserId
+  let currentLaserIndex = currentShooterIndex
+  const moveLaser = () => {
+    squares[currentLaserIndex].classList.remove('laser')
+    // Check if the laser is still in the game container 
+    if (currentLaserIndex >= 15) {
+      currentLaserIndex -= gameWidth
+      squares[currentLaserIndex].classList.add ('laser')
+      // if not remove the class and stop it
+    } else {
+      squares[currentLaserIndex].classList.remove('laser')
+      clearInterval(laserId)
+    }
+
+    // if the laser touch an invader remove class and ad it to an array
+    if (squares[currentLaserIndex].classList.contains('invader')) {
+      squares[currentLaserIndex].classList.remove('laser')
+      squares[currentLaserIndex].classList.remove('invader')
+      clearInterval(laserId)
+
+      const removedAlien = alienInvaders.indexOf(currentLaserIndex)
+      removedAliens.push(removedAlien)
+      result++;
+      resultDisplay.innerHTML = 'Score : ' + result
+    }
+  }
+  switch (e.key) {
+    case ' ':
+    case 'ArrowUp':
+      laserId = setInterval(moveLaser, 50);
+      break;
+  }
+}
+
+document.addEventListener('keydown', shoot)
+
+// TODO: Make the start / restart button work
+// TODO: Add instructions for keys
+// TODO: Add skin for shooter
+// TODO: Add skin for invaders
+// TODO: Media queries

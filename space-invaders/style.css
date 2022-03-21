@@ -64,7 +64,6 @@ a {
 	background-color: #ffacac;
 	color: #2c2c2c;
 	transition: all 0.3s;
-  transition: box-shadow 0.1s;
   border: none;
 }
 
@@ -136,4 +135,9 @@ a {
 .shooter {
   background-color:#F49867;
   border-radius: 0.75rem;
+}
+
+.laser {
+  background-color: #ffacac;
+  clip-path: polygon(52.5% 0%, 52.5% 0%, 55% 80%, 50% 80%);
 }
