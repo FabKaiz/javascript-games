@@ -24,7 +24,6 @@ h1 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
-  padding-top: 2rem;
 }
 
 p {
@@ -62,7 +61,7 @@ a {
   display: grid;
   place-content: center;
   width: 250px;
-	padding: 20px 35px;
+	padding: 18px 35px;
   font-size: 24px;
   cursor: pointer;
 	border-radius: 7px;
@@ -96,7 +95,7 @@ a {
 
 .button-group {
   display: flex;
-  height: 40vh;
+  height: 66vh;
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
@@ -106,10 +105,11 @@ a {
   position: absolute;
   border-radius: 0.5rem;
   width: 30vw;
-  max-width: 400px;
+  max-width: 300px;
+  max-height: 300px;
   opacity: 0;
   height: auto;
-  left: 9vw;
+  left: 14vw;
   top: 0;
   transition: all 0.3s;
   visibility: hidden;
@@ -118,7 +118,7 @@ a {
 .right {
   top: 30px !important;
   left: inherit !important;
-  right: 9vw !important;
+  right: 14vw !important;
 }
 
 .breakout {
@@ -133,25 +133,59 @@ a {
 }
 
 .space-invaders {
-  top: 19vw !important;
+  top: 15vw !important;
 }
 
-@media screen and (max-width: 1560px) {
+@media screen and (max-width: 768px) {
+  .title {
+    padding: 1rem;
+  }
+  
+  .back-button {
+    padding: 10px 10px;
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width: 1300px) {
   #game-screenshot {
     position: absolute;
     border-radius: 0.5rem;
     width: 30vw;
-    max-width: 400px;
+    max-width: 300px;
     opacity: 0;
     height: auto;
-    left: 0px;
+    left: 1vw;
+    top: 0;
+    transition: all 0.3s;
+    visibility: hidden;
+  }
+
+  .right {
+    right: 1vw !important;
+  }
+
+  .back-button {
+    padding: 10px 10px;
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 1560px) and (min-width: 1301px) {
+  #game-screenshot {
+    position: absolute;
+    border-radius: 0.5rem;
+    width: 30vw;
+    max-width: 300px;
+    opacity: 0;
+    height: auto;
+    left: 9vw;
     top: 0;
     transition: all 0.3s;
     visibility: hidden;
   }
   
   .right {
-    right: 0px !important;
+    right: 9vw !important;
   }
   
   .breakout {
