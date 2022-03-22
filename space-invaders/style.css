@@ -27,6 +27,7 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
+  margin-top: -80px;
 }
 
 .container {
@@ -147,7 +148,91 @@ a {
   font-size: 1.5rem;
   width: 445px;
   margin: 0;
-  padding: 270px 78px;
+  padding: 255px 78px;
   position: absolute;
   transition: all 0.3s;
+}
+
+@media screen and (max-width: 1600px) {
+  .game {
+    width: 450px;
+    height: 450px;
+  }
+  
+  .game div {
+    width: 30px;
+    height: 30px;
+  }
+
+  .instructions {
+    font-size: 1rem;
+    width: 308px;
+    padding: 194px 71px;
+  }
+
+  #game-msg {
+    font-size: 3rem;
+    height: 55px;
+    padding: 198px 63px;
+    width: 324px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .game {
+    width: 375px;
+    height: 375px;
+  }
+  
+  .game div {
+    width: 25px;
+    height: 25px;
+  }
+
+  .instructions {
+    padding: 156px 34px;
+  }
+
+  #game-msg {
+    font-size: 3rem;
+    height: 55px;
+    padding: 160px 25px;
+    width: 324px;
+  }
+
+  .back-button {
+    width: 180px;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .game {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .game div {
+    width: 20px;
+    height: 20px;
+  }
+
+  .instructions {
+    font-size: 0.85rem;
+    width: 256px;
+    padding: 124px 22px;
+  }
+
+  #game-msg {
+    font-size: 2.5rem;
+    height: 55px;
+    padding: 123px 17px;
+    width: 266px;
+  }
+
+  .back-button {
+    padding: 14px;
+    width: 140px;
+    font-size: 14px;
+  }
 }
