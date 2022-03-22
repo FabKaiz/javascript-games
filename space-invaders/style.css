@@ -128,16 +128,16 @@ a {
 }
 
 .invader {
-  background-color:#AE67FA;
-  border-radius: 50%;
+  background-size: contain;
+  background-image: url(./images/invader.png);
 }
 
 .shooter {
-  background-color:#F49867;
-  border-radius: 0.75rem;
+  background-size: contain;
+  background-image: url(./images/shooter.png);
 }
 
 .laser {
-  background-color: #ffacac;
+  background-color: #fd5454;
   clip-path: polygon(52.5% 0%, 52.5% 0%, 55% 80%, 50% 80%);
 }
