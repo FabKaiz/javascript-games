@@ -2,6 +2,7 @@ const gameContainer = document.querySelector('.game');
 const resultDisplay = document.getElementById('result');
 const startBtn      = document.getElementById('start-button');
 const instructions  = document.querySelector('.instructions')
+const gameMsg       = document.getElementById('game-msg');
 let currentShooterIndex = 202
 let gameWidth = 15
 let direction = 1
@@ -86,11 +87,25 @@ const moveInvaders = () => {
 
   drawGameInvaders()
 
+  const loosingMsg = () => {
+    gameMsg.innerHTML = 'GAME OVER!'
+    gameMsg.style.color = 'rgb(255, 0, 80)'
+    gameMsg.style.visibility = 'visible'
+    gameMsg.style.opacity = '0.9'
+  }
+
+  const winningMsg = () => {
+    gameMsg.innerHTML = 'YOU WIN!'
+    gameMsg.style.color = 'darkseagreen'
+    gameMsg.style.visibility = 'visible'
+    gameMsg.style.opacity = '0.9'
+  }
+
   // Check if invaders touch the shooter
   if (squares[currentShooterIndex].classList.contains('invader', 'shooter')) {
     resultDisplay.innerHTML = 'GAME OVER!'
     clearInterval(invadersId)
-    // TODO: SHOW LOOSING MESSAGE
+    loosingMsg()
   }
 
   // Check if invaders touch the bottom of the screen
@@ -98,7 +113,7 @@ const moveInvaders = () => {
     if (alienInvaders[i] > squares.length - gameWidth) {
       resultDisplay.innerHTML = 'GAME OVER!'
       clearInterval(invadersId)
-    // TODO: SHOW LOOSING MESSAGE
+      loosingMsg()
     }
   }
   // Check for the win
@@ -107,7 +122,7 @@ const moveInvaders = () => {
     clearInterval(invadersId)
     document.removeEventListener('keydown', shoot)
     document.removeEventListener('keydown', moveShooter)
-    // TODO: SHOW WINNING MESSAGE
+    winningMsg()
   }
 }
 
@@ -159,9 +174,13 @@ const startGame = () => {
     instructions.style.visibility = 'hidden'
   }, 400);
 
+  // Remove game over / win message
   if (asRunned) {
     startBtn.innerHTML = 'Restart game'
+    gameMsg.style.opacity = '0'
+    setTimeout(() => gameMsg.style.visibility = 'hidden', 300);
   }
+
   // Reset and remove everything
   const squares = [...document.querySelectorAll('.game div')];
   squares[currentShooterIndex].classList.remove('shooter');
