@@ -9,6 +9,7 @@ let invadersId
 let goingRight = true
 let removedAliens = []
 let result = 0
+let asRunned = false
 
 // Add 225 div to the game div
 for (let i = 0; i < 225; i++) {
@@ -16,9 +17,8 @@ for (let i = 0; i < 225; i++) {
   gameContainer.appendChild(square);
 }
 
-const squares = [...document.querySelectorAll('.game div')];
 
-const alienInvaders = [
+let alienInvaders = [
   0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
   15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
   30, 31, 32, 33, 34, 35, 36, 37, 38, 39
@@ -26,25 +26,27 @@ const alienInvaders = [
 
 // Add class of invaders to the specified index
 const drawGameInvaders = () => {
+  const squares = [...document.querySelectorAll('.game div')];
   for (let i = 0; i < alienInvaders.length; i++) {
     if (!removedAliens.includes(i)) {
       squares[alienInvaders[i]].classList.add('invader');
     }
   }
 }
-drawGameInvaders()
 
 // Remove all invader class from the game
 const removeGameInvaders = () => {
+  const squares = [...document.querySelectorAll('.game div')];
   for (let i = 0; i < alienInvaders.length; i++) {
     squares[alienInvaders[i]].classList.remove('invader');
   }
 }
 
-squares[currentShooterIndex].classList.add('shooter');
 
 // move shooter left or right
 const moveShooter = (e) => {
+  const squares = [...document.querySelectorAll('.game div')];
+
   squares[currentShooterIndex].classList.remove('shooter');
   switch (e.key) {
     case 'ArrowLeft':
@@ -56,8 +58,6 @@ const moveShooter = (e) => {
   }
   squares[currentShooterIndex].classList.add('shooter');
 }
-
-document.addEventListener('keydown', moveShooter);
 
 
 const moveInvaders = () => {
@@ -110,12 +110,13 @@ const moveInvaders = () => {
     // TODO: SHOW WINNING MESSAGE
   }
 }
-invadersId = setInterval(moveInvaders, 500);
 
 
 const shoot = (e) => {
   let laserId
   let currentLaserIndex = currentShooterIndex
+  const squares = [...document.querySelectorAll('.game div')];
+
   const moveLaser = () => {
     squares[currentLaserIndex].classList.remove('laser')
     // Check if the laser is still in the game container 
@@ -148,16 +149,52 @@ const shoot = (e) => {
   }
 }
 
-document.addEventListener('keydown', shoot)
 
 const startGame = () => {
+  asRunned = true
+
+  // Remove the instructions text
   instructions.style.opacity = 0
   setTimeout(() => {
     instructions.style.visibility = 'hidden'
   }, 400);
+
+  if (asRunned) {
+    startBtn.innerHTML = 'Restart game'
+  }
+  // Reset and remove everything
+  const squares = [...document.querySelectorAll('.game div')];
+  squares[currentShooterIndex].classList.remove('shooter');
+  clearInterval(invadersId)
+  removeGameInvaders()
+  result = 0
+  removedAliens = []
+  goingRight = true
+  currentShooterIndex = 202
+  direction = 1
+
+  alienInvaders = [
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+    15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
+    30, 31, 32, 33, 34, 35, 36, 37, 38, 39
+  ]
+  
+  // Draw the invaders, shooter and create EventListener
+  resultDisplay.innerHTML = 'Score : ' + result
+  squares[currentShooterIndex].classList.add('shooter');
+  drawGameInvaders()
+  document.addEventListener('keydown', moveShooter);
+  invadersId = setInterval(moveInvaders, 500);
+  document.addEventListener('keydown', shoot)
 }
 
-startBtn.addEventListener('click', startGame)
+// Remove button be clickable when pressing space
+document.querySelectorAll("button").forEach( function(item) {
+  item.addEventListener('focus', function() {
+      this.blur();
+  })
+})
 
-// TODO: Make the start / restart button work
+startBtn.addEventListener('click', () => startGame())
+
 // TODO: Media queries
