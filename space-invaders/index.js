@@ -1,6 +1,7 @@
 const gameContainer = document.querySelector('.game');
 const resultDisplay = document.getElementById('result');
 const startBtn      = document.getElementById('start-button');
+const instructions  = document.querySelector('.instructions')
 let currentShooterIndex = 202
 let gameWidth = 15
 let direction = 1
@@ -149,8 +150,14 @@ const shoot = (e) => {
 
 document.addEventListener('keydown', shoot)
 
+const startGame = () => {
+  instructions.style.opacity = 0
+  setTimeout(() => {
+    instructions.style.visibility = 'hidden'
+  }, 400);
+}
+
+startBtn.addEventListener('click', startGame)
+
 // TODO: Make the start / restart button work
-// TODO: Add instructions for keys
-// TODO: Add skin for shooter
-// TODO: Add skin for invaders
 // TODO: Media queries
