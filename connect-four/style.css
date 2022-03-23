@@ -125,6 +125,7 @@ h3 {
   border-radius: 50%;
   background-color: #252133;
   border: 5px solid #170947b6;
+  cursor: pointer;
 }
 
 #start-button {
