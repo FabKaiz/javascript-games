@@ -34,8 +34,10 @@ p {
 }
 
 .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0rem 4rem;
-  position: relative;
 }
 
 .flex-container {
@@ -92,55 +94,47 @@ a {
 
 .button-group {
   display: flex;
-  justify-content: space-around;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .game__card {
   width: 350px;
-  height: 240px;
-	background-color: #ffacac;
+  height: 250px;
 	border-radius: 9px;
 	color: #2c2c2c;
 	transition: all 0.3s;
-  padding-top: -6px;
   text-align: center;
-  padding-bottom: 1rem;
-}
-
-.game__card:hover {
-  color: #2c2c2c;
-  background-color: #ffe5e5;
-  background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffacac' fill-opacity='0.4'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  animation: animatedBackground 5s linear infinite alternate;
+  overflow: hidden;
+  margin: 1rem;
+  position: relative;
 }
 
 .game__card:hover img {
-  clip-path: polygon(0 0,100% 0, 105% 100%, 0 100%);
-
+  transform: scale(1.1);
 }
 
 .game__card img {
-  clip-path: polygon(0 0,100% 0, 105% 90%, 0 100%);
+  width: 350px;
+  height: 250px;
+  object-fit: cover;
   width: 100%;
 	border-radius: 7px;
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
 	transition: all 0.3s;
-  z-index: 3;
 }
 
-@media screen and (max-width: 768px) {
-
-}
-@media screen and (max-width: 1300px) {
-
-}
-
-@media screen and (max-width: 1560px) and (min-width: 1301px) {
-
-}
-
-@media screen and (min-width: 2000px) {
-
+.game__card h3 {
+  margin: 0;
+  padding-top: 3rem;
+  position: absolute;
+  bottom: 0px;
+  color:#ffacac;
+  background-image:
+  linear-gradient(to bottom, rgba(22, 20, 24, 0), rgba(7, 6, 8, 0.712), rgb(7, 6, 8));
+  width: 100%;
+  height: 50px;
+  transition: all 0.3s;
 }
