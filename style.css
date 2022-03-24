@@ -7,7 +7,6 @@ body {
   color: white;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  overflow-y: hidden;
   background-color: #1e1c22;
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.7),
