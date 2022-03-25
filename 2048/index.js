@@ -12,3 +12,8 @@ for (let i = 0; i < 16; i++) {
   cell.classList.add('cell');
   gameContainer.appendChild(cell);
 }
+
+const tile = document.createElement('div');
+tile.classList.add('tile');
+tile.innerHTML = 2
+gameContainer.appendChild(tile);
