@@ -8,3 +8,5 @@ const gameMsg       = document.getElementById('game-msg');
 let result = 0
 
 const grid = new Grid(gameContainer)
+grid.randomEmptyCell().tile = new Tile(gameContainer)
+grid.randomEmptyCell().tile = new Tile(gameContainer)
