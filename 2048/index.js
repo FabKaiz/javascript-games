@@ -1,4 +1,5 @@
 import Grid from "./javascript/Grid.js";
+import Tile from "./javascript/Tile.js";
 
 const gameContainer = document.querySelector('.game');
 const resultDisplay = document.getElementById('result');
