@@ -174,7 +174,7 @@ const startGame = () => {
     instructions.style.visibility = 'hidden'
   }, 400);
 
-  // Remove game over / win message if game as already run
+  // Remove game over / win message if game has already run
   if (asRunned) {
     startBtn.innerHTML = 'Restart game'
     gameMsg.style.opacity = '0'
