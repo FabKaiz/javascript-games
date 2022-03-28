@@ -150,9 +150,9 @@ a {
   color: rgb(255, 0, 80);
   background-color: #2c2c2ce1;
   height: 77px;
-  padding: 41vmin 23vmin;
+  padding:  38vmin 17.5vmin;
   margin: 0;
-  width: 44vmin;
+  width: 47vmin;
   opacity: 0;
   visibility: hidden;
   transition: padding 0.6s, opacity 0.3s;
@@ -164,15 +164,29 @@ a {
 #start-button {
   visibility: hidden;
   opacity: 0;
+  position: absolute;
+  bottom: 30vh;
+  z-index: 99;
+  font-family: 'Sora', sans-serif;
 }
 
 p {
   margin: 0;
 }
 
+@media screen and (max-width: 1950px) {
+  #game-msg {
+    padding:  37vmin 17.5vmin;
+  }
+}
+
 @media screen and (max-width: 780px) {
   .title h1 {
     margin-top: 10px;
+  }
+
+  #game-msg {
+    padding:  35.5vmin 17.5vmin;
   }
 
   .back-button {
