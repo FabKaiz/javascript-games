@@ -27,6 +27,7 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
+  margin-top: -110px;
 }
 
 .container {
@@ -185,4 +186,13 @@ h2 {
   height: 112px;
   opacity: 0;
   transition: padding 0.6s, opacity 0.3s;
+}
+
+p {
+  margin: 0;
+}
+
+h3 {
+  margin: 0;
+  margin-bottom: 0.5rem;
 }
