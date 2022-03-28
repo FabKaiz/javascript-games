@@ -2,11 +2,8 @@ import Grid from "./javascript/Grid.js";
 import Tile from "./javascript/Tile.js";
 
 const gameContainer = document.querySelector('.game');
-const resultDisplay = document.getElementById('result');
-const startBtn      = document.getElementById('start-button');
-const instructions  = document.querySelector('.instructions')
+const restartBtn      = document.getElementById('start-button');
 const gameMsg       = document.getElementById('game-msg');
-let result = 0
 
 const grid = new Grid(gameContainer)
 grid.randomEmptyCell().tile = new Tile(gameContainer)
@@ -62,7 +59,17 @@ async function handleInput(e) {
   // Check for game over
   if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
     newTile.waitForTransition(true).then(() => {
-      alert('Game Over')
+      // Show game over message
+      gameMsg.style.visibility = 'visible'
+      gameMsg.style.opacity = '0.9'
+
+      // Show restart button
+      restartBtn.style.visibility = 'visible'
+      restartBtn.style.opacity = '1'
+
+      restartBtn.addEventListener('click', () => {
+        window.location.reload();
+      })
     })
     return
   }
