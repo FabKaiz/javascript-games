@@ -31,7 +31,29 @@ const keys = [
   'M',
   '⌫',
 ]
+const guessRows = [
+  ['', '', '', '', ''],
+  ['', '', '', '', ''],
+  ['', '', '', '', ''],
+  ['', '', '', '', ''],
+  ['', '', '', '', ''],
+  ['', '', '', '', '']
+]
 
+guessRows.forEach((row, rowIndex) => {
+  // Create a new div for each row
+  const rowElement = document.createElement('div')
+  rowElement.setAttribute('id', 'row-' + (rowIndex + 1))
+  row.forEach((guess, guessIndex) => {
+    // Create div for each tile in the row
+    const tileElement = document.createElement('div');
+    tileElement.setAttribute('class', 'tile');
+    tileElement.setAttribute('id', 'row-' + (rowIndex + 1) + '-' + 'tile-' + (guessIndex + 1))
+    rowElement.append(tileElement);
+  })
+
+  gameContainer.appendChild(rowElement)
+})
 
 const handleClick = () => {
   console.log('clicked');
