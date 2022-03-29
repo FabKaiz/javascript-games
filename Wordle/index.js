@@ -1,6 +1,6 @@
 const gameContainer     = document.querySelector('.game');
 const keyboardContainer = document.querySelector('.keyboard');
-
+const messageDisplay    = document.querySelector('.message-container');
 
 const wordle = 'SUPER'
 
@@ -46,6 +46,7 @@ const guessRows = [
 
 let currentRow = 0;
 let currentTile = 0;
+let isGameOver = false;
 
 guessRows.forEach((row, rowIndex) => {
   // Create a new div for each row
@@ -76,7 +77,8 @@ const handleClick = (key) => {
     return
   }
   if (key === 'ENTER') {
-    // TODO
+    checkRow()
+    return
   }
   addLetter(key)
 }
@@ -99,4 +101,86 @@ const addLetter = (letter) => {
     tile.setAttribute('data', letter)
     currentTile++
   }
+}
+
+const checkRow = () => {
+  const guess = guessRows[currentRow].join('')
+  if (currentTile > 4) {
+    flipTile()
+    // Show win message
+    if (wordle == guess) {
+      showMessage('Well done!')
+      isGameOver = true
+      return
+    } else {
+      // If user is on the last row and didn't guess correctly => Game over
+      if (currentRow >= 5) {
+        isGameOver = false
+        showMessage('Game over!')
+        return
+      }
+      // Go to the next row if possible
+      if (currentRow < 5) {
+        currentRow++
+        currentTile = 0
+      }
+    }
+  }
+}
+
+const showMessage = (message) => {
+  const messageElement = document.createElement('p')
+  messageElement.innerHTML = message
+  // Add custom color if game over
+  if (message === 'Game over!') {
+    messageElement.style.backgroundColor = 'rgb(52 15 26)'
+    messageElement.style.fontWeight = 'bold'
+  }
+  messageDisplay.append(messageElement)
+  setTimeout(() => messageDisplay.removeChild(messageElement), 2500);
+}
+
+const addColorToKey = (keyLetter, className) => {
+  const key = document.getElementById(keyLetter)
+  key.classList.add(className);
+}
+
+const flipTile = () => {
+  const rowTiles = document.querySelector('#row-' + currentRow).childNodes
+  let checkWordle = wordle;
+  const guess = []
+
+  // Add each tile of the checked row to the guess array
+  rowTiles.forEach(tile => {
+    guess.push({ letter: tile.getAttribute('data'), color: 'grey-overlay' })
+  })
+
+  // Add the green overlay if it's the correct index
+  guess.forEach((guess, index) => {
+    if (guess.letter == wordle[index]) {
+      guess.color = 'green-overlay';
+      checkWordle = checkWordle.replace(guess.letter, '')
+    }
+  })
+
+  // Add the yellow overlay if the letter exist in the wordle
+  guess.forEach((guess, index) => {
+    if (checkWordle.includes(guess.letter)) {
+      guess.color = 'yellow-overlay'
+      checkWordle = checkWordle.replace(guess.letter, '')
+    }
+  })
+
+  // Animate the row
+  rowTiles.forEach((tile, index) => {
+    setTimeout(() => {
+      // Add the fliping effect to the current tile
+      tile.classList.add('flip')
+      setTimeout(() => {
+        // Add colors to each tile of the checked row before the end of the flip animation
+        tile.classList.add(guess[index].color)
+        addColorToKey(guess[index].letter, guess[index].color)
+      }, 200);
+    }, 250 * index)
+  })
 }

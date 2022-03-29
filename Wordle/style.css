@@ -151,6 +151,7 @@ a {
   max-width: 750px;
   display: flex;
   flex-wrap: wrap;
+  margin-top: 2rem;
 }
 
 .keyboard button {
@@ -164,6 +165,10 @@ a {
   cursor: pointer;
   user-select: none;
   margin: 4px;
+}
+
+.keyboard button:active {
+  background: #666666;
 }
 
 .keyboard button:nth-child(20),
@@ -183,6 +188,46 @@ a {
   height: 30px;
 }
 
+.message-container p {
+  background-color: #729282;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin: 0;
+}
+
+.tile.flip {
+  animation: 0.4s linear flipping;
+}
+
+@keyframes flipping {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+.grey-overlay,
+.yellow-overlay,
+.green-overlay {
+  border: none !important;
+}
+
+.grey-overlay {
+  background-color: #3a3a3c !important;
+}
+
+.yellow-overlay {
+  background-color: #b59f3a !important;
+}
+
+.green-overlay {
+  background-color: #538d4e !important;
+}
 
 /* -== Media Queries ==- */
 @media screen and (max-width: 890px) {
