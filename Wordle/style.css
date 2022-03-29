@@ -115,9 +115,6 @@ a {
 }
 
 .game {
-  /* width: 40vmin;
-  height: 51vmin; */
-
   background-color: #121213;
   overflow: hidden;
   position: relative;
