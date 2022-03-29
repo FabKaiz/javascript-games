@@ -72,11 +72,11 @@ keys.forEach(key => {
 })
 
 const handleClick = (key) => {
-  if (key == '⌫') {
+  if (key == '⌫' && !isGameOver) {
     removeLetter()
     return
   }
-  if (key === 'ENTER') {
+  if (key === 'ENTER' && !isGameOver) {
     checkRow()
     return
   }
@@ -115,7 +115,7 @@ const checkRow = () => {
     } else {
       // If user is on the last row and didn't guess correctly => Game over
       if (currentRow >= 5) {
-        isGameOver = false
+        isGameOver = true
         showMessage('Game over!')
         return
       }

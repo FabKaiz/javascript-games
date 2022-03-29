@@ -24,7 +24,7 @@ body {
 
 .title h1 {
   text-align: center;
-  font-size: 5vw;
+  font-size: 2.5rem;
   background-image: linear-gradient(89.97deg, #AE67FA 1.84%, #F49867 102.67%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -33,7 +33,7 @@ body {
 }
 
 .container {
-  margin: 2rem 4rem
+  margin: 1rem 4rem
 }
 
 .flex {
@@ -115,11 +115,9 @@ a {
 }
 
 .game {
-  width: 50vw;
-  max-height: 700px;
-  max-width: 700px;
-  min-width: 320px;
-  min-height: 295px;
+  /* width: 40vmin;
+  height: 51vmin; */
+
   background-color: #121213;
   overflow: hidden;
   position: relative;
@@ -131,10 +129,8 @@ a {
 }
 
 .game .tile {
-  width: 10vw;
-  min-width: 60px;
-  height: 9.9vw;
-  max-height: 113px;
+  width: 8vmin;
+  height: 8vmin;
   border: 2px solid #3a3a3c;
   box-sizing: border-box;
   display: flex;
@@ -152,6 +148,8 @@ a {
   display: flex;
   flex-wrap: wrap;
   margin-top: 2rem;
+  position: absolute;
+  bottom: 0;
 }
 
 .keyboard button {
@@ -189,7 +187,7 @@ a {
 }
 
 .message-container p {
-  background-color: #729282;
+  background-color: #538d4e;
   border-radius: 10px;
   padding: 10px 20px;
   margin: 0;
@@ -231,16 +229,46 @@ a {
 
 /* -== Media Queries ==- */
 @media screen and (max-width: 890px) {
+  .title h1 {
+    font-size: 5vw;
+  }
+
   .back-button {
     width: 200px;
     font-size: 1.2rem;
   }
 }
 
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 790px) {
   .back-button {
     width: 170px;
     font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .keyboard {
+    width: 323px;
+  }
+  
+  .keyboard button {
+    width: 25px;
+    height: 38px;
+    margin: 3px;
+    font-size: 0.6rem;
+  }
+
+  .keyboard button:nth-child(20),
+  .keyboard button:nth-child(28) {
+    width: 45px;
+  }
+
+  .keyboard button:nth-child(11) {
+    margin-left: 20px;
+  }
+
+  .keyboard button:nth-child(28) {
+    font-size: 1.1rem;
   }
 }
 
@@ -254,5 +282,49 @@ a {
   .title h1 {
     font-size: 2rem;
     margin-top: -10px;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .keyboard {
+    width: 100%;
+  }
+
+  .keyboard button {
+    width: 8vmin;
+  }
+
+  .keyboard button:nth-child(1) {
+    margin-left: 2vmin;
+  }
+
+  .keyboard button:nth-child(20) {
+    margin-left: 2vmin;
+  }
+
+
+  .keyboard button:nth-child(11) {
+    margin-left: 7vmin;
+  }
+
+  .keyboard button:nth-child(28) {
+    font-size: 1.1rem;
+  }
+
+  .game .tile {
+    width: 12vmin;
+    height: 12vmin;
+    font-size: 1.4rem;
+
+  }
+}
+
+@media screen and (max-width: 335px) {
+  .keyboard button:nth-child(20) {
+    margin-left: 0;
+  }
+
+  .keyboard button {
+    margin: 2px;
   }
 }
