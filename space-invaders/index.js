@@ -215,5 +215,3 @@ document.querySelectorAll("button").forEach( function(item) {
 })
 
 startBtn.addEventListener('click', () => startGame())
-
-// TODO: Media queries
