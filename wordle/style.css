@@ -1,0 +1,361 @@
+/* -============ BASIC STYLE ============- */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap');
+
+body {
+  font-family: 'Sora', sans-serif;
+  height: 100vh;
+  background-size: cover;
+  color: white;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow-y: hidden;
+  background-color: #121213;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgb(78, 78, 78);
+  width: 100vw;
+  margin-bottom: 1rem;
+}
+
+.title h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  background-image: linear-gradient(89.97deg, #AE67FA 1.84%, #F49867 102.67%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+  margin-top: -80px;
+}
+
+.container {
+  margin: 1rem 4rem
+}
+
+.flex {
+  display: flex;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.back-button {
+  display: grid;
+  width: 270px;
+  place-content: center;
+	padding: 15px 30px;
+  font-size: 24px;
+  cursor: pointer;
+	border-radius: 7px;
+	border-bottom-left-radius: 0;
+	background-color: #ffacac;
+	color: #2c2c2c;
+	transition: all 0.3s;
+  border: none;
+}
+
+.back-button:hover {
+  border-radius: 0px;
+  color: #2c2c2c;
+  background-color: #ffe5e5;
+  background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffacac' fill-opacity='0.4'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  animation: animatedBackground 5s linear infinite alternate;
+}
+
+.back-button:active {
+  box-shadow: 0 0 12px white;
+}
+
+@keyframes animatedBackground {
+  from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: 100% 0;
+	}
+}
+
+.button-start {
+  margin-top: 1rem;
+}
+
+/* -============ END OF BASIC STYLE ============- */
+/* ======================================================================= */
+
+#game-msg {
+  position: absolute;
+  font-weight: bold;
+  font-size: 4rem;
+  top: 0px;
+  right: 0px;
+  background-color: #2c2c2caf;
+  height: 77px;
+  padding: 262px 68px;
+  margin: 0;
+  width: 465px;
+  opacity: 0;
+  visibility: hidden;
+  transition: padding 0.6s, opacity 0.3s;
+}
+
+.game {
+  background-color: #121213;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.game div {
+  display: flex;
+}
+
+.game .tile {
+  width: 8vmin;
+  height: 8vmin;
+  border: 2px solid #3a3a3c;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  margin: 2px;
+  font-size: 2rem;
+}
+
+.keyboard {
+  width: 513px;
+  min-width: 320px;
+  max-width: 750px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  position: absolute;
+  bottom: 0;
+}
+
+.keyboard button {
+  width: 43px;
+  height: 58px;
+  border-radius: 4px;
+  border: none;
+  background-color: #818384;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+  margin: 4px;
+}
+
+.keyboard button:active {
+  background: #666666;
+}
+
+.keyboard button:nth-child(20),
+.keyboard button:nth-child(28) {
+  width: 70px;
+}
+
+.keyboard button:nth-child(28) {
+  font-size: 1.5rem;
+}
+
+.keyboard button:nth-child(11) {
+  margin-left: 30px;
+}
+
+.message-container {
+  height: 30px;
+}
+
+.message-container p {
+  background-color: #538d4e;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin: 0;
+}
+
+.tile.flip {
+  animation: 0.4s linear flipping;
+}
+
+@keyframes flipping {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+.grey-overlay,
+.yellow-overlay,
+.green-overlay {
+  border: none !important;
+}
+
+.grey-overlay {
+  background-color: #3a3a3c !important;
+}
+
+.yellow-overlay {
+  background-color: #b59f3a !important;
+}
+
+.green-overlay {
+  background-color: #538d4e !important;
+}
+
+#restart-btn {
+  width: 350px;
+  font-family: 'Sora', sans-serif;
+  padding: 10px 20px;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.button-grp {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* -== Media Queries ==- */
+
+@media screen and (max-width:950px) {
+  .title h1 {
+    margin-top: 2rem;
+  }
+
+  .button-grp {
+    justify-content: space-around;
+  }
+}
+
+@media screen and (max-width: 890px) {
+  .title h1 {
+    font-size: 5vw;
+  }
+
+  .back-button {
+    width: 200px;
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 790px) {
+  .back-button {
+    width: 170px;
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .keyboard {
+    width: 323px;
+  }
+  
+  .keyboard button {
+    width: 25px;
+    height: 38px;
+    margin: 3px;
+    font-size: 0.6rem;
+  }
+
+  .keyboard button:nth-child(20),
+  .keyboard button:nth-child(28) {
+    width: 45px;
+  }
+
+  .keyboard button:nth-child(11) {
+    margin-left: 20px;
+  }
+
+  .keyboard button:nth-child(28) {
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .back-button {
+    width: 160px;
+    font-size: 1rem;
+    padding: 10px 10px;
+  }
+
+  .title h1 {
+    font-size: 2rem;
+    margin-top: -10px;
+  }
+  .button-grp {
+    height: 100px;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  #restart-btn {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .keyboard {
+    width: 100%;
+  }
+
+  .keyboard button {
+    width: 8vmin;
+  }
+
+  .keyboard button:nth-child(1) {
+    margin-left: 2vmin;
+  }
+
+  .keyboard button:nth-child(20) {
+    margin-left: 2vmin;
+  }
+
+
+  .keyboard button:nth-child(11) {
+    margin-left: 7vmin;
+  }
+
+  .keyboard button:nth-child(28) {
+    font-size: 1.1rem;
+  }
+
+  .game .tile {
+    width: 12vmin;
+    height: 12vmin;
+    font-size: 1.4rem;
+
+  }
+}
+
+@media screen and (max-width: 335px) {
+  .keyboard button:nth-child(20) {
+    margin-left: 0;
+  }
+
+  .keyboard button {
+    margin: 2px;
+  }
+}
