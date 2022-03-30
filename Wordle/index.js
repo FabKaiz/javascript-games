@@ -2,7 +2,19 @@ const gameContainer     = document.querySelector('.game');
 const keyboardContainer = document.querySelector('.keyboard');
 const messageDisplay    = document.querySelector('.message-container');
 
-const wordle = 'SUPER'
+let wordle = 'SUPER'
+
+// Generate random word with Random Words API, for local use only
+// API url: https://rapidapi.com/sheharyar566/api/random-words5
+const getWordle = () => {
+  fetch('http://localhost:8000/word')
+    .then(response => response.json())
+    .then(json => {
+      console.log(json);
+      wordle = json.toUpperCase();
+    })
+    .catch(err => console.log(err));
+}
 
 const keys = [
   'Q',
