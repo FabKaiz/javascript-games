@@ -2,9 +2,16 @@ const gameContainer     = document.querySelector('.game');
 const keyboardContainer = document.querySelector('.keyboard');
 const messageDisplay    = document.querySelector('.message-container');
 
-let wordle = 'SUPER'
+import wordList from './wordList.js'
+
+let wordle
+
+// Take a random word from an array of 2315 words!
+const randomWord = wordList.wordList[Math.floor(Math.random()*wordList.wordList.length)];
+wordle = randomWord.toUpperCase()
 
 // Generate random word with Random Words API, for local use only
+// Use your API key and 'npm start:backend'
 // API url: https://rapidapi.com/sheharyar566/api/random-words5
 const getWordle = () => {
   fetch('http://localhost:8000/word')
@@ -127,7 +134,7 @@ const checkRow = () => {
       // If user is on the last row and didn't guess correctly => Game over
       if (currentRow >= 5) {
         isGameOver = true
-        showMessage('Game over!')
+        showMessage('Game over! The wordle was ' + wordle)
         return
       }
       // Go to the next row if possible
@@ -148,7 +155,6 @@ const showMessage = (message) => {
     messageElement.style.fontWeight = 'bold'
   }
   messageDisplay.append(messageElement)
-  setTimeout(() => messageDisplay.removeChild(messageElement), 2500);
 }
 
 const addColorToKey = (keyLetter, className) => {
