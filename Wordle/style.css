@@ -224,7 +224,31 @@ a {
   background-color: #538d4e !important;
 }
 
+#restart-btn {
+  width: 350px;
+  font-family: 'Sora', sans-serif;
+  padding: 10px 20px;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.button-grp {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* -== Media Queries ==- */
+
+@media screen and (max-width:950px) {
+  .title h1 {
+    margin-top: 2rem;
+  }
+
+  .button-grp {
+    justify-content: space-around;
+  }
+}
+
 @media screen and (max-width: 890px) {
   .title h1 {
     font-size: 5vw;
@@ -279,6 +303,16 @@ a {
   .title h1 {
     font-size: 2rem;
     margin-top: -10px;
+  }
+  .button-grp {
+    height: 100px;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  #restart-btn {
+    width: 250px;
   }
 }
 

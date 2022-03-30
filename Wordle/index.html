@@ -10,8 +10,14 @@
 </head>
 
 <body>
-  <a class="back-button" href="../index.html">Back to main menu</a>
 
+  <div class="button-grp">
+    <a class="back-button" href="../index.html">Back to main menu</a>
+  
+    <button id="restart-btn" class="back-button" onClick="window.location.reload();">
+      Restart with a new word
+    </button>
+  </div>
   <div class="container flex center column">
 
     <div class="title column">
@@ -20,7 +26,9 @@
 
     <div class="game"></div>
 
-    <div class="message-container"></div>
+    <div class="message-container">
+
+    </div>
 
     <div class="keyboard"></div>
 

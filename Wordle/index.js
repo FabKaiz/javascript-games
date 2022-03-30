@@ -1,6 +1,7 @@
 const gameContainer     = document.querySelector('.game');
 const keyboardContainer = document.querySelector('.keyboard');
 const messageDisplay    = document.querySelector('.message-container');
+const restartBtn        = document.getElementById('restart-btn');
 
 import wordList from './wordList.js'
 
@@ -150,11 +151,13 @@ const showMessage = (message) => {
   const messageElement = document.createElement('p')
   messageElement.innerHTML = message
   // Add custom color if game over
-  if (message === 'Game over!') {
+  if (message === 'Game over! The wordle was ' + wordle) {
     messageElement.style.backgroundColor = 'rgb(52 15 26)'
     messageElement.style.fontWeight = 'bold'
   }
   messageDisplay.append(messageElement)
+  restartBtn.style.visibility = 'visible'
+  restartBtn.style.opacity = '1'
 }
 
 const addColorToKey = (keyLetter, className) => {
