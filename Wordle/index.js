@@ -90,6 +90,18 @@ keys.forEach(key => {
   keyboardContainer.append(buttonElement)
 })
 
+window.addEventListener('keydown', (e) => handleUserKeyboard(e))
+
+const handleUserKeyboard = (e) => {
+  if ( keys.includes(e.key.toUpperCase())) {
+    handleClick(e.key.toUpperCase())
+  }
+
+  if (e.key === 'Backspace') {
+    handleClick('⌫')
+  }
+}
+
 const handleClick = (key) => {
   if (key == '⌫' && !isGameOver) {
     removeLetter()
